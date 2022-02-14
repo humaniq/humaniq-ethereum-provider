@@ -1,0 +1,29 @@
+{
+  "name": "humaniq-ethereum-provider",
+  "version": "0.0.1",
+  "source": "src/index.ts",
+  "main": "dist/humaniq-provider.js",
+  "types": "dist/types.d.ts",
+  "scripts": {
+    "build": "parcel build src/index.ts --no-source-maps -o humaniq-provider.js -d dist",
+    "watch": "parcel watch src/index.ts -o humaniq-provider.js -d dist",
+    "lint": "eslint . --fix",
+    "test": "jest"
+  },
+  "dependencies": {
+    "buffer": "^5.6.0",
+    "eth-sig-util": "^3.0.1",
+    "isutf8": "^3.1.1",
+    "web3": "^0.20.7",
+    "@types/events": "^3.0.0",
+    "events": "^3.3.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "parcel-bundler": "^1.12.4",
+    "typescript": ">=3.0.0",
+    "@babel/preset-typescript": "^7.16.7"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,12 @@
+{
+  "include": ["src/**/*"],
+  "baseUrl": "./src",
+  "paths": {
+    "~*": ["./*"]
+  },
+  "compilerOptions": {
+    "target": "ES2015",
+    "strict": true,
+    "isolatedModules": true
+  }
+}

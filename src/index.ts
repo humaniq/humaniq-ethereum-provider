@@ -1,7 +1,5 @@
 import { bridgeSend, getSyncResponse, web3Response } from "./messages";
 
-console.log("IMPORT-PROVIDER!!!!!!!!!!!!!!!!!!!")
-
 declare global {
   interface Window {
     ReactNativeWebView: {

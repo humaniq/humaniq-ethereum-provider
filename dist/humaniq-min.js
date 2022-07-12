@@ -288,6 +288,9 @@ class $882b6d93070905b3$export$cdfbbad9b2980226 {
             ;
             this._events[name] = this._events[name].filter(filterListeners);
         };
+        this.removeAllListeners = ()=>{
+            this._events = [];
+        };
         this.emit = (name, data)=>{
             if (!this._events[name]) return;
             this._events[name].forEach((cb)=>cb(data)

@@ -47,6 +47,7 @@ export class EthereumProvider {
     _events: any;
     on: (name: any, listener: any) => void;
     removeListener: (name: any, listenerToRemove: any) => void;
+    removeAllListeners: () => void;
     emit: (name: any, data: any) => void;
 }
 

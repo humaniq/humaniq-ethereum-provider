@@ -129,7 +129,6 @@ const $dc2966de588d0343$export$bfd39fdfb84f21cc = (payload)=>{
 };
 
 
-console.log("IMPORT-PROVIDER!!!!!!!!!!!!!!!!!!!");
 let $149c1bd638913645$export$b2200e4c6a46d0b6 = 0;
 let $149c1bd638913645$export$b89c5c1b934d8237 = {
 };
@@ -279,6 +278,9 @@ class $149c1bd638913645$export$cdfbbad9b2980226 {
             const filterListeners = (listener)=>listener !== listenerToRemove
             ;
             this._events[name] = this._events[name].filter(filterListeners);
+        };
+        this.removeAllListeners = ()=>{
+            this._events = [];
         };
         this.emit = (name, data)=>{
             if (!this._events[name]) return;

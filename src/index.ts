@@ -193,6 +193,11 @@ export class EthereumProvider {
     const filterListeners = (listener: any) => listener !== listenerToRemove
     this._events[name] = this._events[name].filter(filterListeners)
   }
+
+  removeAllListeners = () => {
+    this._events = []
+  }
+
   emit = (name: any, data: any) => {
     if (!this._events[name]) {
       return
@@ -202,6 +207,8 @@ export class EthereumProvider {
 }
 
 window.ethereum = new EthereumProvider()
+
+
 
 
 

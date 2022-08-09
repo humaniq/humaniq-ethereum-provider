@@ -90,7 +90,18 @@ window.ReactNativeWebView.onMessage = function(message) {
         return;
     }
     if (data.type === 'accountsChanged') window.ethereum.emit("accountsChanged", data.data);
-    if (data.type === 'networkChanged') window.ethereum.emit("networkChanged", data.data);
+    if (data.type === 'networkChanged') {
+        window.ethereum.networkVersion = data.data;
+        window.ethereum.chainId = "0x" + Number(data.data).toString(16);
+        window.ethereum.networkId = data.data;
+        window.ethereum.emit("networkChanged", data.data);
+    }
+    if (data.type === 'chainChanged') {
+        window.ethereum.networkVersion = data.data;
+        window.ethereum.chainId = "0x" + Number(data.data).toString(16);
+        window.ethereum.networkId = data.data;
+        window.ethereum.emit("chainChanged", data.data);
+    }
     if (callback) {
         if (data.type === "api-response") {
             if (data.permission === 'qr-code') $9ba0f9a5c47c04f2$export$62d5ab75f7bffae3(data, callback);
@@ -177,7 +188,7 @@ class $882b6d93070905b3$export$cdfbbad9b2980226 {
     }
     constructor(){
         this.isHumaniq = true;
-        this.isMetamask = true;
+        this.isMetamask = false;
         this.humaniq = new $882b6d93070905b3$export$fb92d2d856d3013a();
         this.isConnected = ()=>true
         ;
@@ -190,17 +201,17 @@ class $882b6d93070905b3$export$cdfbbad9b2980226 {
             if (payload.method == 'eth_requestAccounts') return $882b6d93070905b3$export$33845a8bc26fa336('web3', {
                 url: location.href
             });
-            var syncResponse = $cfe897238575280a$export$bfd39fdfb84f21cc(payload);
+            const syncResponse = $cfe897238575280a$export$bfd39fdfb84f21cc(payload);
             if (syncResponse && callback) callback(null, syncResponse);
             else {
-                var messageId = $882b6d93070905b3$export$b2200e4c6a46d0b6++;
+                const messageId = $882b6d93070905b3$export$b2200e4c6a46d0b6++;
                 if (Array.isArray(payload)) {
                     $882b6d93070905b3$export$b89c5c1b934d8237[messageId] = {
                         num: payload.length,
                         results: [],
                         callback: callback
                     };
-                    for(var i in payload)$cfe897238575280a$export$c4e279a88e6f5a80({
+                    for(const i in payload)$cfe897238575280a$export$c4e279a88e6f5a80({
                         type: 'web3-send-async-read-only',
                         messageId: messageId,
                         payload: payload[i]

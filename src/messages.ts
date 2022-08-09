@@ -60,7 +60,17 @@ window.ReactNativeWebView.onMessage = function (message: any) {
         window.ethereum.emit("accountsChanged", data.data)
     }
     if (data.type === 'networkChanged') {
+        window.ethereum.networkVersion = data.data
+        window.ethereum.chainId = "0x" + Number(data.data).toString(16)
+        window.ethereum.networkId = data.data
         window.ethereum.emit("networkChanged", data.data)
+    }
+
+    if (data.type === 'chainChanged') {
+        window.ethereum.networkVersion = data.data
+        window.ethereum.chainId = "0x" + Number(data.data).toString(16)
+        window.ethereum.networkId = data.data
+        window.ethereum.emit("chainChanged", data.data)
     }
 
     if (callback) {

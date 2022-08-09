@@ -42,7 +42,7 @@ export class HumaniqAPI {
 
 export class EthereumProvider {
   isHumaniq = true
-  isMetamask = true
+  isMetamask = false
   humaniq = new HumaniqAPI()
   isConnected = () => true
 
@@ -69,11 +69,11 @@ export class EthereumProvider {
     if (payload.method == 'eth_requestAccounts') {
       return sendAPIrequest('web3', { url: location.href })
     }
-    var syncResponse = getSyncResponse(payload)
+    const syncResponse = getSyncResponse(payload)
     if (syncResponse && callback) {
       callback(null, syncResponse)
     } else {
-      var messageId = callbackId++
+      const messageId = callbackId++
 
       if (Array.isArray(payload)) {
         callbacks[messageId] = {
@@ -81,7 +81,7 @@ export class EthereumProvider {
           results: [],
           callback: callback
         }
-        for (var i in payload) {
+        for (const i in payload) {
           bridgeSend({
             type: 'web3-send-async-read-only',
             messageId: messageId,
